@@ -1,0 +1,639 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot?-9heso');
+	src:url('../fonts/icomoon/icomoon.eot?#iefix-9heso') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff?-9heso') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf?-9heso') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg?-9heso#icomoon') format('svg');
+}
+
+.eaform {
+	position: relative;
+	margin: 0 auto;
+	padding: 1.0em 0;
+	max-width: 860px;
+	width: 100%;
+	text-align: left;
+	font-size: 1.2em;
+}
+
+.eaform .submit {
+	display: none;
+}
+
+/* Question list style */
+.eaform ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+	-webkit-transition: height 0.4s;
+	transition: height 0.4s;
+}
+
+.eaform ol:before {
+	content: '';
+	/*background-color: rgba(0,0,0,0.1);*/
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2.35em;
+}
+
+.questions li {
+	z-index: 100;
+	position: relative;
+	visibility: hidden;
+	height: 0;
+	-webkit-transition: visibility 0s 0.4s, height 0s 0.4s;
+	transition: visibility 0s 0.4s, height 0s 0.4s;
+}
+
+.questions li.current,
+.no-js .questions li {
+	visibility: visible;
+	height: auto;
+	-webkit-transition: none;
+	transition: none;
+}
+
+/* Labels */
+.questions li > span {
+	display: block;
+	overflow: hidden;
+}
+
+.questions li > span label {
+	display: block;
+	font-size:1.0em;
+	font-weight:600;
+	-webkit-transition: -webkit-transform 0.4s;
+	transition: transform 0.4s;
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.questions li.current > span label,
+.no-js .questions li > span label {
+	-webkit-transition: none;
+	transition: none;
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.show-next .questions li.current > span label {
+	-webkit-animation: moveUpFromDown 0.4s both;
+	animation: moveUpFromDown 0.4s both;
+}
+.modal{
+	bottom:inherit !important;
+}
+
+@-webkit-keyframes moveUpFromDown {
+	from { -webkit-transform: translateY(100%); }
+	to { -webkit-transform: translateY(0); }
+}
+
+@keyframes moveUpFromDown {
+	from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+	to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+/* Input field */
+.questions input {
+	display: block;
+	margin: 0.3em 0 0 0;
+	padding: 0.5em 1em 0.5em 0.7em;
+	width: calc(100% - 2em);
+	border: none;
+	background: transparent;
+	color: rgba(0,0,0,0.8);
+	font-size: 1.0em;
+	line-height: 1;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.questions .current input,
+.no-js .questions input {
+	opacity: 1;
+}
+
+.questions input:focus,
+.eaform button:focus {
+	outline: none;
+}
+.modal-header {
+    padding: 9px 15px;
+    /*border-bottom: 1px solid black;*/
+    }
+.modal-header button{
+    float: right;
+    border-bottom: none;
+    }
+
+
+/* Next question button */
+.next {
+	position: absolute;
+	right: 0;
+	/*bottom: 2em;  padding-bottom of form plus progress bar height */
+	display: block;
+	padding: 0;
+	width: 2em;
+	height: 2.25em;
+	border: none;
+	background: none;
+	/*color: rgba(0,0,0,0.4);*/
+	color: #ffffff;
+	text-align: center;
+	opacity: 0;
+	z-index: 100;
+	cursor: pointer;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translateX(-20%);
+	transform: translateX(-20%);
+	pointer-events: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.prev {
+	position: absolute;
+	left: 0;
+	/*bottom: 2em;  padding-bottom of form plus progress bar height */
+	display: block;
+	padding: 0;
+	width: 2em;
+	height: 2.25em;
+	border: none;
+	background: none;
+	/*color: rgba(0,0,0,0.4);*/
+	color: #ffffff;;
+	text-align: center;
+	opacity: 0;
+	z-index: 100;
+	cursor: pointer;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translateX(-20%);
+	transform: translateX(-20%);
+	pointer-events: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.next:hover {
+	color: rgba(0,0,0,0.5);
+}
+
+.next::after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	 font-family: FontAwesome;
+    content: "\f061";
+	line-height: 2;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.prev:hover {
+	color: rgba(0,0,0,0.5);
+}
+
+.prev::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	 font-family: FontAwesome;
+    content: "\f060";
+	line-height: 2;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.next.show {
+	opacity: 1;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	pointer-events: auto;
+}
+.prev.show {
+	opacity: 1;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	pointer-events: auto;
+}
+
+/* Progress bar */
+.eaform .progress {
+	width: 0%;
+	height: 0.15em;
+	margin-top:10px;
+	/*background: rgba(0,0,0,0.3);*/
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+}
+
+.eaform .progress::before {
+	position: absolute;
+	top: auto;
+	width: 100%;
+	height: inherit;
+	background: rgba(0,0,0,0.05);
+	content: '';
+}
+
+/* Number indicator */
+.eaform .number {
+	position: absolute;
+	right: 0;
+	overflow: hidden;
+	margin: 0.4em 0;
+	width: 3em;
+	font-weight: 700;
+	font-size: .8em;
+}
+
+.eaform .number:after {
+	position: absolute;
+	left: 50%;
+	content: '/';
+	opacity: 0.4;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.eaform .number span {
+	float: right;
+	width: 40%;
+	text-align: center;
+}
+
+.eaform .number .number-current {
+	float: left;
+}
+
+.eaform .number-next {
+	position: absolute;
+	left: 0;
+}
+
+.eaform.show-next .number-current {
+	-webkit-transition: -webkit-transform 0.4s;
+	transition: transform 0.4s;
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.eaform.show-next .number-next {
+	-webkit-animation: moveUpFromDown 0.4s both;
+	animation: moveUpFromDown 0.4s both;
+}
+
+/* Error and final message */
+.eaform .error-message,
+.eaform .final-message {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: opacity 0.4s;
+	transition: opacity 0.4s;
+}
+
+.eaform .error-message {
+	padding: 0.4em 3.5em 0 0;
+	width: 100%;
+	color: red;
+	font-style: italic;
+	font-size: .8em;
+}
+
+.final-message {
+	top: 50%;
+	left: 0;
+	padding: 0.5em;
+	width: 100%;
+	text-align: center;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.error-message.show,
+.final-message.show {
+	visibility: visible;
+	opacity: 1;
+}
+
+.final-message.show {
+	-webkit-transition-delay: 0.5s;
+	transition-delay: 0.5s;
+}
+
+/* Final hiding of form / showing message */
+.eaform-inner.hide {
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s, visibility 0s 0.3s;
+	transition: opacity 0.3s, visibility 0s 0.3s;
+}
+
+/* No JS Fallback */
+.no-js .eaform {
+	font-size: 1.0em;
+}
+
+.no-js .questions li {
+	padding: 0 0 2em;
+}
+
+.no-js .eaform .submit {
+	display: block;
+	float: right;
+	padding: 10px 20px;
+	border: none;
+	background: rgba(0,0,0,0.3);
+	color: rgba(0,0,0,0.4);
+}
+
+.no-js .eaform .controls {
+	display: none;
+
+}
+
+.controls{
+	color: white;
+}
+/* button{
+	width: 150px;
+    border: 2px solid black;
+   
+    background-color: #050a072e;
+    text-align: center;
+    margin: auto 0;
+    vertical-align: middle;
+}*/
+
+.widget-title{
+	margin: 0px;
+	font-weight: 700;
+	border-bottom: 2px solid #fff;
+}
+.b-btn{
+	/*
+    border: 2px solid black;
+   
+
+    
+    
+    vertical-align: middle;*/
+
+	 
+
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+  /*background-color: #2dcb89;*/
+  background-color: #2f2828;
+  /*border: 2px solid #336f4c;*/
+  border: 2px solid #979494 ;
+border-radius: 25px;
+  /*box-shadow: 0 3px #336f4c;*/
+
+    text-align: center;
+    width: 6em;
+    /*background-color: #050a072e;*/
+    margin: auto 5px;
+    height: 35px;
+
+
+}
+#myModal2 * h3{
+	margin: 5px !important;
+
+}
+.b-btn:hover,
+.b-btn:focus {
+	border: 2px solid #fff;
+}
+  
+	
+
+
+/*.b-btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 3px #336f4c;
+
+  transform: translateY(1px);
+}*/
+#q1_container #q1_phone{
+	display: none;
+	border: 2px solid #fff;
+}
+
+#myModal{
+	/*background: black;*/
+}
+.modal-content{
+	background: #2F2828;
+/*RBG background-image
+background-image: linear-gradient(to bottom,#000000 20%, #00FF00 0%, #000000 50%, #000000 75%, #FF0000 98%, #000000 100%);*/
+	color:white;
+}
+#myModal2  .modal-body {
+
+	padding:5px !important;
+}
+
+
+#q1_container{
+	display:flex;width:100%;background-color: rgba(0,0,0,0.1);margin-top: 20px;height: 75px; vertical-align: middle}
+
+#q3_container label{
+
+	font-size:1.0em;
+	font-weight:500;
+}
+#q3_container div{
+	width:100%;
+	margin-bottom: 10px;
+	 /*line-height: 3;*/
+}
+
+
+.current  input{
+       
+        /*border: 2px solid #336f4c;*/
+        border: 2px solid #979494 ;
+        display: inline;
+        margin: auto 5px;
+        height: 35px;
+        /*box-shadow: 0 3px #336f4c;*/
+
+        color: inherit;
+        }
+#q3_container  input{
+	width:100%;
+	font-weight: 200;
+}
+#q3_container  label{
+	display: block;
+	}
+	#q3_container  span{
+font-weight: 200;
+	}
+input[type="checkbox"]{
+	width:20px !important;
+	height:15px !important;
+}
+.current input:focus,
+.current input:active
+
+{
+	border: 2px solid #fff;
+}
+
+#eawp-loading-icon{
+	width:100%;
+}
+.svg-container{
+	width: 100px;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+#ea-form-result{
+	margin-top:20px;
+
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 8%;
+    top: 50%;
+    width: 70px;
+    height: 70px;
+    /*margin: -75px 0 0 -75px;*/
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #ff0000;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #000000;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #00ff00;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+.close{
+	color:white;
+}
+.close:hover,
+.close, focus{
+	color:white;
+}
+@-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes scale {
+  0%, 100% {
+    transform: scale(0.0);
+  }
+  7%, 90% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+path {
+    cursor: pointer;
+    shape-rendering: crispEdges;
+    fill: url(#MyGradient);
+}
+
+
+/* Remove IE clear cross */
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+/* Adjust form for smaller screens */
+@media screen and (max-width: 44.75em) {
+	.eaform {
+		font-size: 1.0em;
+	}
+}
+@media screen and (min-width: 44.75em) {
+	.eaform {
+		font-size: 1.0em;
+	}
+}
+
+@media screen and (max-width: 33.5625em) {
+	.eaform {
+		font-size: .8em;
+	}
+}
