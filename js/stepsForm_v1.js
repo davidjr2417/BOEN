@@ -128,6 +128,38 @@
 				ev.preventDefault();
 			} 
 		} );
+		   //Disable Back Button on Mobile
+/*document.addEventListener('keydown', function(ev) {
+    if (ev.keyCode == 27) {
+      // Prevent default (disable the back button behavior)
+      ev.preventDefault();
+		document.getElementById('myModal').style.display='none';
+      // Your code
+    }
+});*/
+      /*   var showModal = function() {
+    // some code here to show the HTML elements...
+
+    window.history.pushState('backPressed', null, null);
+    window.history.pushState('dummy', null, null);
+    window.addEventListener('popstate', hideModal, { once: true });
+};
+
+var hideModal = function(event) {
+    if (event.state == 'backPressed') {
+        document.getElementById('myModal').style.display='none';
+    }
+};
+	*/
+
+		// disable tab
+		// this.el.addEventListener( 'keydown', function( ev ) {
+		// 	var keyCode = ev.keyCode || ev.which;
+		// 	// tab
+		// 	if( keyCode === 9 ) {
+		// 		ev.preventDefault();
+		// 	}
+		// } );
 	};
 
 	stepsForm.prototype._nextQuestion = function() {
@@ -159,7 +191,7 @@
 			// add class "show-next" to form element (start animations)
 			classie.addClass( this.el, 'show-next' );
 
-			// remove class "current" from current question and add it to the next one
+			// remove class 'ea-current' from current question and add it to the next one
 			// current question
 			var nextQuestion = this.questions[ this.current ];
 			classie.removeClass( currentQuestion, 'current' );
@@ -228,7 +260,7 @@ stepsForm.prototype._prevQuestion = function() {
 			// add class "show-next" to form element (start animations)
 			classie.addClass( this.el, 'show-next' );
 
-			// remove class "current" from current question and add it to the next one
+			// remove class 'ea-current' from current question and add it to the next one
 			// current question
 			var nextQuestion = this.questions[ this.current ];
 			classie.removeClass( currentQuestion, 'current' );
