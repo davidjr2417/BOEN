@@ -111,7 +111,7 @@
 	width: calc(100% - 2em);
 	border: none;
 	background: transparent;
-	color: rgba(0,0,0,0.8);
+	color: #000000;
 	font-size: 1.0em;
 	line-height: 1;
 	opacity: 0;
@@ -122,6 +122,7 @@
 .questions .ea-current input,
 .no-js .questions input {
 	opacity: 1;
+	width:100%;
 }
 
 .questions input:focus,
@@ -139,7 +140,7 @@
 
 
 /* Next question button */
-/*.next {*/
+.next {
 	/*position: absolute;
 	right: 0;
 	bottom: 2em;  padding-bottom of form plus progress bar height */
@@ -151,18 +152,19 @@
 	background: none;*/
 
 
-
-  /*  display: block;
+	font-size:.8em;
+	padding:5px !important;
+    display: block;
     padding: 0;
-    width: 4em;
-    height: 2.25em;
+    /*width: 4em;*/
+    /*height: 1em;*/
     border: 2px solid white;
     background: none;
       border-radius: 35px !important;
       position: absolute !important;
-      right: 20px !important;*/
+      right: 20px !important;
 	/*color: rgba(0,0,0,0.4);*/
-/*	color: #ffffff;
+	color: #ffffff;
 	text-align: center;
 	opacity: 0;
 	z-index: 100;
@@ -172,19 +174,19 @@
 	-webkit-transform: translateX(-20%);
 	transform: translateX(-20%);
 	pointer-events: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}*/
-.next {
+	-webkit-tap-highlight-color: #000000;
+}
+/*.next {
 	position: absolute;
 	right: 0;
-	/*bottom: 2em;  padding-bottom of form plus progress bar height */
+	/*bottom: 2em;  padding-bottom of form plus progress bar height /
 	display: block;
 	padding: 0;
 	width: 2em;
 	height: 2.25em;
 	border: none;
 	background: none;
-	/*color: rgba(0,0,0,0.4);*/
+	/*color: rgba(0,0,0,0.4);/
 	color: #ffffff;;
 	text-align: center;
 	opacity: 0;
@@ -195,14 +197,15 @@
 	-webkit-transform: translateX(-20%);
 	transform: translateX(-20%);
 	pointer-events: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+	-webkit-tap-highlight-color: #000000;
+}*/
 .next:hover {
-	color:rgba(89, 191, 111);
-    /* border: 2px solid rgba(89, 191, 111);
-     border-radius: 35px !important; */
+	color:#ffffff;
+     border: 2px solid #59bf6f;
+     border-radius: 35px !important; 
+     background-color: #59bf6f;
 }
-.next::after {
+/*.next::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -218,7 +221,7 @@
 	speak: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
+}*/
 .prev {
 	position: absolute;
 	left: 0;
@@ -240,7 +243,7 @@
 	-webkit-transform: translateX(-20%);
 	transform: translateX(-20%);
 	pointer-events: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: #000000;
 }
 
 /*.next:hover {
@@ -266,7 +269,7 @@
 }*/
 .prev:hover {
 	/* color: rgba(0,0,0,0.5); */
-	color:rgba(89, 191, 111);
+	color:#59bf6f;
 }
 
 .prev::after {
@@ -305,7 +308,7 @@
 	width: 0%;
 	height: 0.15em;
 	margin-top:10px;
-	/*background: rgba(0,0,0,0.3);*/
+	background: #f5f5f5;
 	-webkit-transition: width 0.4s ease-in-out;
 	transition: width 0.4s ease-in-out;
 }
@@ -315,7 +318,7 @@
 	top: auto;
 	width: 100%;
 	height: inherit;
-	background: rgba(0,0,0,0.05);
+	background: transparent !important;
 	content: '';
 }
 
@@ -328,7 +331,7 @@
 	width: 3em;
 	font-weight: 700;
 	font-size: .8em;
-	/*color:rgba(89, 191, 111);*/
+	/*color:#59bf6f;*/
     display:none;
 }
 
@@ -429,8 +432,8 @@
 	float: right;
 	padding: 10px 20px;
 	border: none;
-	background: rgba(0,0,0,0.3);
-	color: rgba(0,0,0,0.4);
+	background: #000000;
+	color: #000000;
 }
 
 .no-js .eaform .controls {
@@ -520,12 +523,33 @@ border-radius: 25px;
 }
 .modal-content{
 	background: #2F2828;
-	border-color:rgba(89, 191, 111);
-    overflow:scroll;
+	border-color:#59bf6f;
+    /*-ms-overflow-style: none; */
+    -ms-overflow-style: -ms-autohiding-scrollbar !important;
+    /*overflow:scroll;*/
+    overflow-x: hidden;
+    padding-bottom: 40px;
+
+	max-height:500px;
 
 /*RBG background-image
 background-image: linear-gradient(to bottom,#000000 20%, #00FF00 0%, #000000 50%, #000000 75%, #FF0000 98%, #000000 100%);*/
 	color:white;
+
+}
+.modal-dialog {
+    max-width: 600px;
+    margin: 30px auto;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    /*-ms-overflow-style: none;*/
+     -ms-overflow-style: -ms-autohiding-scrollbar;
+    background: transparent; /* make scrollbar transparent */
+}
+.modal-content:hover{
+    /*-ms-overflow-style: -ms-autohiding-scrollbar;*/
+  	color:white;
 }
 #myModal2  .modal-body {
 
@@ -535,7 +559,15 @@ background-image: linear-gradient(to bottom,#000000 20%, #00FF00 0%, #000000 50%
   .modal-body {
 
 	padding: 20px;
+	overflow: none ;
 
+}
+.ea-current textarea{
+	width:100%;
+	color:black;
+}
+.ea-current .row{
+	margin-bottom:10px;
 }
 
 #evnt-attnd-form label,
@@ -546,7 +578,7 @@ background-image: linear-gradient(to bottom,#000000 20%, #00FF00 0%, #000000 50%
 #q1_container{
 	/* display:flex;width:100%;background-color: rgba(0,0,0,0.1);margin-top: 20px;height: 75px; vertical-align: middle} */
 }
-#q3_container label{
+.input-label{
 
 	font-size:1em;
 	font-weight:300;
@@ -603,7 +635,7 @@ input[type="checkbox"]{
 .ea-current input:active
 
 {
-	border: 2px solid rgba(89, 191, 111);;
+	border: 2px solid #59bf6f;;
 }
 
 #eawp-loading-icon{
@@ -665,7 +697,7 @@ input[type="checkbox"]{
 	opacity: 1;
 }
 .close:hover{
-	color:rgba(89, 191, 111);
+	color:#59bf6f;
 
 }
 
@@ -673,6 +705,326 @@ input[type="checkbox"]{
 	    height: 35px !important;
     float: left !important;
     margin-right: 20px!important;
+}
+
+  .ea-current select{
+		background-color:#2F2828;
+		text-align: center;
+		text-decoration:underline;
+		border-width:2px;
+		font-size:14px;
+	}
+	.ea-current label span{
+text-decoration:underline;
+	}
+	/* .sign-in-as:focus{
+		background-color:#59bf6f;
+	} */
+	input[type="radio"].toggle:checked + label {
+  background-color: #59bf6f;
+  box-shadow: inset 0 1px 6px #d4d4d4,
+                    0 1px 2px #000000;
+  cursor: default;
+  /* color: #E6E6E6; */
+  border-color: transparent;
+  /* text-shadow: 0 1px 1px rgba(40, 40, 40, 0.75); */
+}
+
+input[type="radio"].toggle + label {
+  width: 100%;
+
+}
+
+input[type="radio"].toggle:checked + label.btn:hover {
+  background-color: inherit;
+  background-position: 0 0;
+  transition: none;
+	background-color: #59bf6f;
+
+}
+
+input[type="radio"].toggle-left + label {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+input[type="radio"].toggle-right + label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ea-current .btn{
+	background-color:transparent;
+	border:2px solid #59bf6f;
+	text-transform: capitalize;
+
+}
+.sign-in-as{
+	display:none !important;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 14px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 14px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 14px;
+}
+
+.tooltips {
+  position: relative;
+  display: inline-block;
+}
+.tooltips:active .tooltiptext, 
+.tooltips:focus .tooltiptext {
+	visibility: hidden !important;
+}
+.tooltips .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #59bf6f;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    border: 2px solid white;
+    position: absolute;
+    /* z-index: 1; */
+    
+    font-size: 1.5vh;  
+  bottom: 115%;
+  left: 50%; 
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+    font-size: 1.5vh;
+}
+
+
+.tooltips:hover .tooltiptext {
+  visibility: visible;
+   transition-delay: 2s;
+}
+.tooltips .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #59bf6f transparent transparent transparent;
+}
+
+.signUp-row{display:flex} 
+.signUp-label{flex:1.2;  text-align:right; }
+.signUp-checkbox {flex:.2;  text-align:right; }
+.signUp-checkbox input {    margin-top: .7vh !important;}
+ .signUp-input{flex:5 } 
+ .signUp-input input{padding-top: 5px; font-size:.9em }
+#q3_container textarea {
+   resize: none;
+   color:#2F2828;
+   width:100%;
+}
+.ea-current select{
+	    margin-left: 5px;
+}
+
+
+  .ea-current select{
+		background-color:#2F2828;
+		text-align: center;
+		text-decoration:underline;
+		border-width:2px;
+		font-size:14px;
+	}
+	.ea-current label span{
+text-decoration:underline;
+	}
+	/* .sign-in-as:focus{
+		background-color:#59bf6f;
+	} */
+	input[type="radio"].toggle:checked + label {
+  background-color: #59bf6f;
+  box-shadow: inset 0 1px 6px #292929,
+                    0 1px 2px #000000;
+  cursor: default;
+  /* color: #E6E6E6; */
+  border-color: transparent;
+  /* text-shadow: 0 1px 1px rgba(40, 40, 40, 0.75); */
+}
+
+input[type="radio"].toggle + label {
+  width: 100%;
+
+}
+
+input[type="radio"].toggle:checked + label.btn:hover {
+  background-color: inherit;
+  background-position: 0 0;
+  transition: none;
+	background-color: #59bf6f;
+
+}
+
+input[type="radio"].toggle-left + label {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+input[type="radio"].toggle-right + label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ea-current .btn{
+	background-color:transparent;
+	border:2px solid #59bf6f;
+	text-transform: capitalize;
+
+}
+.sign-in-as{
+	display:none !important;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 14px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 14px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 14px;
+}
+
+.tooltips {
+  position: relative;
+  display: inline-block;
+}
+.tooltips:active .tooltiptext, 
+.tooltips:focus .tooltiptext {
+	visibility: hidden !important;
+}
+.tooltips .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #59bf6f;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    border: 2px solid white;
+    position: absolute;
+    /* z-index: 1; */
+    
+    font-size: 1.5vh;  
+  bottom: 115%;
+  left: 50%; 
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+    font-size: 1.5vh;
+}
+
+
+.tooltips:hover .tooltiptext {
+  visibility: visible;
+   transition-delay: 2s;
+}
+.tooltips .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #59bf6f transparent transparent transparent;
+}
+
+.signUp-row{display:flex} 
+.signUp-label{flex:1.2;  text-align:right; }
+.signUp-checkbox {flex:.2;  text-align:right; }
+.signUp-checkbox input {    margin-top: .7vh !important;}
+ .signUp-input{flex:5 } 
+ .signUp-input input{padding-top: 5px; font-size:.9em }
+#q3_container textarea {
+   resize: none;
+   color:#2F2828;
+   width:100%;
+}
+.ea-current select{
+	    margin-left: 5px;
+}
+#optContainer{
+	float:right;
+}
+#optInsideContainer{
+	 width: 380px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+#imgContainer div{
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 0 20px;
+    
+float: left;
+}
+.sign-btn{
+    margin: 0 auto;
+    max-width: 100%;
+    width: 190px;
+}
+.controls button{
+	margin-top: 20px;
+}
+.fieldInput{
+
+}
+.fieldLabel{
+padding-right:5px;
+
+
+}.fieldLabel label{
+text-align: right; 
+
+
+}
+#optContainer{
+	/*float:right;
+	margin-right: 20px;*/
+}
+#user .row label{
+	text-align:center !important;
+}
+.ea-current h5{
+	margin: 0;
+}
+
+#signInOpt{
+		margin:0px auto 10px; 
+		width: 150px; 
+		float: right;
+		cursor:pointer; 
+}
+
+#signUpOpt{
+		margin:0px auto 10px; 
+		width: 150px; 
+		float: right;
+		cursor:pointer; 
+		margin-bottom: 20px;
+}
+
+.ea-current select{
+		cursor:pointer; border: 2px solid #59bf6f; color:#FFF;    
+	 background: transparent;}
 }
 @-webkit-keyframes spin {
     0%   {
@@ -735,9 +1087,59 @@ input[type=text]::-ms-clear {
     /* padding-bottom: 120px; */
     height: auto;
     /* max-height: 100%; */
-    overflow-y: hidden;
     overflow: scroll;
-	}
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    overflow-x: hidden;
+}::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+@media screen and (min-height: 576px) {
+	
+	#optContainer {
+
+   width:33% !important;
+}
+
+}
+@media screen and (max-width: 768px) {
+	
+		.ea-current label{
+			text-align: left !important;
+		}
+	
+	
+}
+@media screen and (max-width: 576px) {
+	#imgContainer div{float: none !important;}
+		#imgContainer{
+				 width: 100% !important;
+    max-width: 100%;
+		}#optContainer{
+			    width: 100%;
+    max-width: 100%;
+    margin: 20px auto 0px;
+		}
+	
+
+}
+@media screen and (max-width: 420px) {
+	
+		.sign-btn{
+				 width: 100% !important;
+    max-width: 100%;
+		}
+		.sign-center{
+
+    width: 190px;
+    max-width: 100%;
+    margin: 0 auto;
+
+		}
+	
+
 }
 @media screen and (min-width: 44.75em) {
 	.eaform {
@@ -760,8 +1162,8 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-/*  border: 2px solid rgba(89, 191, 111);;
-  -webkit-text-fill-color: rgba(89, 191, 111);;
+/*  border: 2px solid #59bf6f;;
+  -webkit-text-fill-color: #59bf6f;;
   -webkit-box-shadow: 0 0 0px 1000px #000 inset;
   transition: background-color 5000s ease-in-out 0s;*/
 }

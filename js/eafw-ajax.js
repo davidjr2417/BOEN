@@ -1,66 +1,98 @@
-function ValidateForm(theForm, query_nonce_value) {
+
+function validateForm(form, query_nonce_value) {
 
 	// jQuery("#evnt-attnd-form").hide();
-	jQuery("#eawp-loading-icon").show();
+	$("#eawp-loading-icon").show();
 
-// alert(query_nonce_value);
+
 	var alldata = {
 		'action': query_nonce_value,
-		'formsdata': jQuery("#evnt-attnd-form").serialize() + '&security=' + query_nonce_value,
+		'formsdata': $("#evnt-attnd-form").serialize() + '&security=' + query_nonce_value,
 	};
 
 
 
 	jQuery.post(eafw_ajax.ajaxurl, alldata, function(response) {
-		// alert('a');
-	// 	var filterResponse = response.substring(0, response.indexOf('0'));
+		
+		var filterResponse = response.substring(0, response.indexOf('0'));
+		$("#eawp-loading-icon").hide();
+		var message ='';
+		// alert(filterResponse);
+		if(filterResponse==="NOUSER" || filterResponse==="ADDINGERROR" || filterResponse==="FOUNDUSER"  ){
+					// jQuery("#evnt-attnd-form").show();
+						
+					 
+					// form.querySelector( 'button.prev' ).click();
+					message = showMessage(form,filterResponse );
 
-	// 	if(showError(form,filterResponse )){
-	// 				// jQuery("#evnt-attnd-form").show();
-					jQuery("#eawp-loading-icon").hide();
-			classie.removeClass( form.querySelector( '.eaform-inner' ), 'hide' );
-			alert(theForm.getSum());
-			// this._showError("INVALIDOPTION");
-	// 	}
+					if(message[0]){
+						var resultMessage = $('span.error-message' );
+					
+						
+						resultMessage.text( message[1]);
+						resultMessage.addClass( 'show' );
+						if($('#evnt-attnd-form').hasClass('hide')){
+							$('#evnt-attnd-form').removeClass('hide' );
+						}	
+					}
+
+					
+				
+		}
+		else if(filterResponse==="SIGNEDIN" || filterResponse==="ALREADYIN" || "ADDEDTODB" ){
+		
+			message = showMessage(form,filterResponse);
 			
-	
-
-		// jQuery("#eawp-loading-icon").hide();
-		// jQuery("#ea-form-result").show();
-
-		// jQuery("#ea-form-result").text(response.substring(0, response.indexOf('0')));
-
+			if(!message[0]){
+				
+				$("#ea-form-result").text(message[1]);
+				$("#ea-form-result-container").show();
+				
+				
+			}
+		}
+			
+	return 0;
 	});
 }
-// function showError ( form, err ) {
-// 		var message = '';
-// 		var isError = false;
-// 		switch( err ) {
-// 			case 'NOUSER':
-// 				message = 	"Sorry user not found, please try again...";
-// 				isError = true;
-// 				break;
-// 			case 'INVALIDEMAIL':
-// 				message = 'Please fill a valid email address';
-// 				break;
-// 			case 'INVALIDPHONE' :
-// 				message = 'Please fill a valid phone number 123-456-7890';
-// 				break;
-// 			case 'INVALIDOPTION' :
-// 				message = 'Please select an option from above';
-// 				break;
+function showMessage ( form, err ) {
+		var message = '';
+		var message2 = '';
+		var el = '';
+		var isError = false;
+		var isError2 = false;
+		switch( err ) {
+			case 'NOUSER':
+				message = "Sorry user not found, please try again...";
+				message2 = "First Time signing in"
+				isError = true;
+				isError2 = true;
+				break;
+			case 'ADDINGERROR':
+				message = 'There was an problem adding your information. Please try again...';
+				isError = true;
+				el = 'span.error-message';
+				break;
+			case 'FOUNDUSER':
+				message = 'User Already Used, Please Try Another Username...';
+				isError = true;
+				el = 'span.error-message';
+				break;
+			case 'SIGNEDIN' :
+			case 'ADDEDTODB' :
+				el = 'ea-form-result';
+				message = 'Thank you, you have been signed in...';
+				break;
+			case 'ALREADYIN' :
+				message = 'You have already signed in today... Thank You...';
+				break;
+		
 			
-// 			default: break;
+			default: break;
 			
-// 		};
-// 		var error = form.querySelector( 'span.error-message' );
-// 		error.innerHTML = message;
-// 		classie.addClass(error, 'show' );
-// 		return isError;
-// 	}
-
-
-// 	// clears/hides the current error message
-// 	stepsForm.prototype._clearError = function() {
-// 		classie.removeClass( this.error, 'show' );
-// 	}
+		};
+		
+		
+		return [isError,message,isError2,message2];
+	}
+	
